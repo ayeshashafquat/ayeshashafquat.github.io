@@ -1,0 +1,62 @@
+div#Title {
+  background-color: darkblue;
+  color: lightsalmon;
+  font-weight: bold;
+  padding: 2%;
+}
+
+div#Title a {
+  color: lightsalmon;
+}
+
+div#Body {
+  padding-top: 1%;
+  width: 60%;
+  align-content: center;
+  margin: auto;
+}
+
+div#Picture {
+  width: 45%;
+  float: left;
+}
+
+div#Picture img {
+  width: 86%;
+  height: 86%;
+  margin: 3%;
+  border: 3px solid black;
+}
+
+div#Picture p {
+  line-height: 30px;
+  text-indent: 10%;
+}
+
+div#Work {
+  margin-left: 55%;
+}
+
+.employment {
+  background-color: mistyrose;
+  color: black;
+  margin: 2%;
+  padding: 5%;
+}
+
+.employment h2 {
+  text-align: left;
+}
+
+div#Work h3 {
+  color: darkblue;
+  margin-left: 10%;
+}
+
+div#Work ul {
+  padding-left: 5%;
+}
+
+div#Work li {
+  padding: 2%;
+}
