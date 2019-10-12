@@ -11,22 +11,21 @@
     <div class="wrapper">
       <div class="header">Test JSON page</div>
       <!-- <button class="button" onclick="loadData()">Load Some JSON</button> -->
-      <button class="button" onclick="console.log('You haven\'t written a function yet!');">Click me to replace list
-        entries</button>
+      <button class="button" onclick="console.log(name_output())">Click me to replace list entries</button>
       <div class="content">
-        <ul class="instructions">
-          <li>At the click of the button above</li>
-          <li>Replace this list</li>
-          <li>With an ordered list</li>
-          <li>Of fifty randomly-selected countries</li>
-          <li>Every time you click the above button</li>
-          <li>The list of countries should change</li>
-          <ol>
-            <li>Use your Developer tools to experiment with possible answers</li>
-            <li>When you have an idea of the correct code</li>
-            <li>Write it into your copy of the Lab HTML</li>
-            <li>And save it for submission</li>
-          </ol>
+        <ul class="instructions" id='all_list'>
+          <li>Delete and re-clone the class repository</li>
+          <li>Open <span class="code">index.html</span> in your browser</li>
+          <li>Open your developer tools and look at the logged data</li>
+          <li>In your console, write code to:
+            <ol>
+              <li>At the click of the button above</li>
+              <li>Loop through the 'countries' variable</li>
+              <li>Replace this list's entries with country names</li>
+              <li>Now, limit the number of countries listed to fifty</li>
+              <li>Randomize which fifty countries are displayed on load</li>
+            </ol>
+          </li>
         </ul>
       </div>
       <div class="footer"></div>
@@ -280,7 +279,22 @@
       { "name": "Zimbabwe", "code": "ZW" }
     ]
     console.log("List of countries in the world", countries);
+    var li_items = document.getElementById('all_list');
+    const nations = sessionStorage.setItem("names", JSON.stringify(countries));
+    function name_output(){
+      var nations = JSON.parse(sessionStorage.getItem("names"));
+      li_items.innerHTML = '';
+      var ol_items = document.createElement('ol');
+      li_items.appendChild(ol_items);
+      for (i = 0; i < 50; i += 1) {
+        var x = Math.floor(Math.random() * nations.length);
+        var li_ = document.createElement('li');
+        var li_txt = document.createTextNode(nations[x].name);
+        li_.appendChild(li_txt);
+        ol_items.appendChild(li_);
+        nations.splice(x, 1);
+    }
+  }
   </script>
 </body>
-
 </html>
