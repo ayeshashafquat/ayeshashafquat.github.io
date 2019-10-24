@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Test AJAX page</title>
+  <link rel="stylesheet" type="text/css" href="./lab_styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="wrapper">
+      <div class="header">Test AJAX page</div>
+      <button class="button" onclick="loadData()">Load Some JSON</button>
+      <div class="content"></div>
+      <div class="footer"></div>
+    </div>
+  </div>
+  <script>
+    function shorten_rand(min, max, i) {
+      min = Math.ceil(min);
+      max -= i;
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min; 
+    }
+    function camelCase(string) {
+      var res = []
+      for (let i = 0; i < string.length; i+= 1) {
+        var inst = string[i]
+        if (i === 0){
+          res += inst.toUpperCase()
+          }
+        else if (string[i - 1] === " " || string[i - 1] === "." || string[i - 1] === "'") { 
+          res += inst.toUpperCase()
+          } 
+        else if (string[i - 1] != " " || string[i - 1] != ".") { 
+          res += inst.toLowerCase()
+          }
+        else if (string[i - 1] === " " && string[i] === "a" && string[i + 1] === "n" && string[i + 2] === "d" && string[i + 3] ===" " ||
+        string[i - 1] === " " && string[i] === "o" && string[i + 1] === "r" && string[i + 2] === " ") { 
+          res += inst.toLowerCase()
+          }
+        }
+        return res
+    }
+    function loadData() {
+      fetch('ajax_sample.json')
+        .then(res => res.json())
+        .then(res => res.map(c => c.name))
+        .then(name => {
+            fetch("ajax_sample.json")
+              .then(res => res.json())
+              .then(res => res.map(c => c.code))
+        .then(code => {
+            var content = document.querySelector(".content");
+            content.innerText = "";
+
+        for (let i = 0; i < 15; i += 1){
+              var num = shorten_rand(0, 242, i);
+              var lines = document.createElement("ol");
+              var index = i + 1;
+              var inst = camelCase(name[num])
+              lines.innerText = index + ") " + inst + ", " + code[num];
+              content.appendChild(lines);
+              name.splice(num, 1);
+              code.splice(num, 1)
+                }
+            })
+        })
+    }
+  </script>
+</body>
+
+</html>
