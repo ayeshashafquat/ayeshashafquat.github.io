@@ -37,7 +37,7 @@
         })
         .then(res => res)
         .then(res => {
-          nameOfBusRoute = res.find(({ route_id }) => route_id = "127");
+          nameOfBusRoute = res.find(({ route_id }) => route_id = "104");
           console.log(nameOfBusRoute);
           document.getElementsByTagName("div")[2].innerHTML =
             "UMD Bus route" + " " + nameOfBusRoute.title;
