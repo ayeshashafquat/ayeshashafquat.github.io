@@ -22,22 +22,21 @@
           .then(r => {
             text2 = "<ul>";
             for (i = 0; i < r.length; i++) {
-              //concatinating route title and id as list items
+             
               text2 +=
                 "<li> Route:" +
                 r[i].title +
                 " (ID:" +
                 r[i].route_id +
                 ") </li>";
-            } //END for loop
+            } 
             text2 += "</ul>";
             document.querySelector(".content").innerHTML = text2;
             return r;
-          }) //end then
-          //.then(data => (document.querySelector(".content").innerHTML = data));
+          }) 
+          
           .then(res => {
             var x = document.getElementsByClassName("header");
-            //creating a random number
             var randoNumber = Math.floor(Math.random() * res.length);
             var rTitle = res[randoNumber].title;
             var rID = res[randoNumber].route_id;        
