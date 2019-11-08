@@ -17,16 +17,26 @@
   </div>
   <script>
     function loadData() {
+      const content= document.querySelector(".content");
       console.log('fetch'); // confirm code is running on click
       fetch('/api')
         .then(res => res.json())
-        .then(res => {
-          console.log(res); // logging step to check what we got
-          return res;
-        })
-        .then(res => res.data.map(c => c.route_id))
-        .then(codes => document.querySelector(".content").innerText = codes);
-    }
+        .then(res => res.data.map(c=>c.course_id))
+        .then(course_id => 
+        {
+          fetch('/api')
+            .then(res => res.json())
+            .then(res => res.data.map(c => c.name))
+            .then(name => {
+              for(let i=0; i < name.length; i+=1) {
+                let el = document.createElement("li");
+                var sub = course_id[i].toString() + ": " + name[i].toString();
+                el.innerText = sub;
+                content.appendChild(el);
+              }
+            })
+          })
+        }
   </script>
 </body>
 
