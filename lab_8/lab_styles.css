@@ -5,6 +5,7 @@ body {
   color: #444;
   padding: 0 10px;
   background: #eee;
+ list-style-type: decimal;
 }
 
 h1,
